@@ -1,6 +1,7 @@
 from pyspark.sql import SQLContext, Window
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as f
+import doctest
 
 """
 First task:
@@ -57,5 +58,6 @@ def spark_app():
 
 if __name__ == "__main__":
     spark_app()
-
+    # To run the doctest, uncomment the line below:
+    doctest.testfile("test.txt")
 

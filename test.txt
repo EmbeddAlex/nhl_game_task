@@ -1,0 +1,38 @@
+>>> from Main import spark_app
+>>> spark_app()
++---------+---------+-------------------+
+|shortName| teamName|             METRIC|
++---------+---------+-------------------+
+|  Arizona|  Coyotes|0.22077922077922077|
+|Nashville|Predators|0.21894736842105264|
+| San Jose|   Sharks|0.19820441988950277|
+|  Phoenix|  Coyotes|0.19393939393939394|
+|  Calgary|   Flames| 0.1858267716535433|
++---------+---------+-------------------+
+<BLANKLINE>
++------------+----------+-----+-------------------+----------+
+|   shortName|  teamName|years|             METRIC|row_number|
++------------+----------+-----+-------------------+----------+
+|     Arizona|   Coyotes| 2018|0.30973451327433627|         1|
+|     Calgary|    Flames| 2018|0.21929824561403508|         2|
+|Philadelphia|    Flyers| 2018|0.21518987341772153|         3|
+|    St Louis|     Blues| 2018|0.18867924528301888|         4|
+|NY Islanders| Islanders| 2018|             0.1875|         5|
+|   Nashville| Predators| 2015| 0.2839506172839506|         1|
+|     Arizona|   Coyotes| 2015|0.24175824175824176|         2|
+|    Carolina|Hurricanes| 2015|0.21182266009852216|         3|
+|    Winnipeg|      Jets| 2015|0.20851063829787234|         4|
+|    San Jose|    Sharks| 2015|0.20535714285714285|         5|
+|    San Jose|    Sharks| 2013| 0.2585551330798479|         1|
+|      Boston|    Bruins| 2013|0.21311475409836064|         2|
+|      Ottawa|  Senators| 2013|0.21153846153846154|         3|
+|   Vancouver|   Canucks| 2013|0.20502092050209206|         4|
+|    Winnipeg|      Jets| 2013| 0.2025862068965517|         5|
+|     Arizona|   Coyotes| 2014|0.25301204819277107|         1|
+|   Nashville| Predators| 2014| 0.2398190045248869|         2|
+|    Winnipeg|      Jets| 2014| 0.2318840579710145|         3|
+|    Colorado| Avalanche| 2014|0.22357723577235772|         4|
+|     Phoenix|   Coyotes| 2014|0.21428571428571427|         5|
++------------+----------+-----+-------------------+----------+
+only showing top 20 rows
+<BLANKLINE>
