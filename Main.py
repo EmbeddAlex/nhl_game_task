@@ -1,4 +1,4 @@
-from pyspark.sql import SQLContext
+from pyspark.sql import SQLContext, Window
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as f
 
@@ -39,6 +39,18 @@ def spark_app():
     data_frame.groupby('shortName', 'teamName'). \
         agg((f.sum(f.when(data_frame.primaryPosition == 'D', data_frame.goals).otherwise(0)) / f.sum('goals')).alias('METRIC')). \
         sort('METRIC', ascending=False).limit(5).show()
+
+    # additional task
+    game = sql_context.read.csv("src/game.csv", header=True, sep=",")
+    data_frame = data_frame.join(game, game_skater_stats.game_id == game.game_id)
+
+    data_frame_2 = data_frame. \
+        groupby('shortName', 'teamName', f.year(data_frame.date_time).alias('years')). \
+        agg((f.sum(f.when(data_frame.primaryPosition == 'D', data_frame.goals).otherwise(0)) / f.sum('goals')).alias('METRIC'))
+
+    window = Window.partitionBy(f.col('years')).orderBy((f.col('METRIC')).desc())
+    data_frame_2.select(f.col('shortName'), f.col('teamName'), f.col('years'), f.col('METRIC'), f.row_number().
+                        over(window).alias('row_number')).where(f.col('row_number') <= 5).show()
 
     spark.stop()
 
