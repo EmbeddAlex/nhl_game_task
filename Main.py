@@ -1,6 +1,6 @@
 from pyspark.sql import SQLContext
 from pyspark.sql import SparkSession
-
+from pyspark.sql import functions as f
 
 """
 First task:
@@ -35,7 +35,10 @@ def spark_app():
         join(game_skater_stats, game_skater_stats.team_id == team_info.team_id). \
         join(player_info, game_skater_stats.player_id == player_info.player_id)
 
-    data_frame.printSchema()
+    # first task:
+    data_frame.groupby('shortName', 'teamName'). \
+        agg((f.sum(f.when(data_frame.primaryPosition == 'D', data_frame.goals).otherwise(0)) / f.sum('goals')).alias('METRIC')). \
+        sort('METRIC', ascending=False).limit(5).show()
 
     spark.stop()
 
